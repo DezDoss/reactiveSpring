@@ -2,16 +2,16 @@ package reactiveSpringBoot.bootstrap.service;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import reactiveSpringBoot.bootstrap.model.entity.Customer;
 import reactiveSpringBoot.bootstrap.repository.CustomerRepository;
 
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
 import java.util.Collection;
 
 public class BaseCustomerService implements CustomerRepository {
 
-    private final RowMapper rowMapper =
+    private final RowMapper<Customer> rowMapper =
             (rs, i) -> new Customer(rs.getLong("id"), rs.getString("name"));
 
     private final JdbcTemplate jdbcTemplate;
